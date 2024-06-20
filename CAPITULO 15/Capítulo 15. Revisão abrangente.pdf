@@ -1,0 +1,678 @@
+<html><head><title>Capítulo 15. Revisão abrangente</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body class="pdf pt-BR" lang="pt-BR"><article id="21151c87-5abc-419b-b541-a638d545c91f" class="page sans"><header><h1 class="page-title"><strong><strong>Capítulo 15. Revisão abrangente</strong></strong></h1><p class="page-description"></p></header><div class="page-body"><h1 id="a7cc6d50-cdce-4fbf-b3f9-8c3336f17c0b" class=""><strong><strong>Revisão Red Hat System Administration I</strong></strong></h1><p id="3166aba5-cb3f-449f-ad4b-73869f78ea4f" class="">Para iniciar a revisão abrangente deste curso, você precisa estar familiarizado com os tópicos abordados em cada capítulo.</p><p id="222aab81-5ee5-4e89-a40f-ae6371f2eb84" class="">Você pode consultar as seções anteriores do material didático para estudo adicional.</p><p id="ec3d18ee-7449-4a22-ac06-e74c899b14b1" class="">
+</p><h2 id="c5ad49eb-39c4-4aaf-9558-c6be2303878a" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch01/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 1, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch01/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Introdução ao Red Hat Enterprise Linux</strong></strong></em></a></h2><p id="dc6db532-f3d2-46b0-9546-c2452c5b7b1b" class="">Definir open source, Linux, distribuições do Linux e o Red Hat Enterprise Linux.</p><p id="6bd0daf4-b3fe-4869-8345-76a46ce5f6d0" class="">Explicar a finalidade do open source, do Linux, das distribuições do Linux e do Red Hat Enterprise Linux.</p><h2 id="1aeb4575-924b-428e-8c4f-30f45d98a7dc" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch02/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 2, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch02/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Acesso à linha de comando</strong></strong></em></a></h2><p id="9511be7a-96ed-4db0-a8cc-b1d49a0a77fc" class="">Fazer login em um sistema Linux e executar comandos simples no shell.</p><ul id="1b231772-72e8-4a7e-9337-a710971502cd" class="bulleted-list"><li style="list-style-type:disc">Fazer login em um sistema Linux e executar comandos simples no shell.</li></ul><ul id="c36c345a-28ed-452a-8edf-d694fac0f6b0" class="bulleted-list"><li style="list-style-type:disc">Fazer login no sistema Linux com o ambiente GNOME de área de trabalho e executar comandos a partir de um prompt do shell em um programa do terminal.</li></ul><ul id="2bf5a59a-db43-44c7-9712-24ad6d43ca3e" class="bulleted-list"><li style="list-style-type:disc">Economizar tempo ao executar comandos a partir de um prompt do shell com atalhos Bash.</li></ul><h2 id="cc34dda3-8a0e-409f-95b1-962b6e8ce309" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch03/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 3, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch03/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Gerenciar arquivos a partir da linha de comando</strong></strong></em></a></h2><p id="93d913be-c006-4cb2-ada8-a6440a5a370e" class="">Copiar, mover, criar, excluir e organizar arquivos no shell Bash.</p><ul id="574cc617-6b5d-4139-8eec-dac4d43bfa52" class="bulleted-list"><li style="list-style-type:disc">Descrever como o Linux organiza arquivos e os propósitos de vários diretórios na hierarquia do sistema de arquivos.</li></ul><ul id="e42811db-4bb0-4bea-ad4c-7055b5a190d3" class="bulleted-list"><li style="list-style-type:disc">Especificar o local absoluto e o local relativo dos arquivos para o diretório de trabalho atual; determinar e alterar o diretório de trabalho e listar o conteúdo dos diretórios.</li></ul><ul id="7e7b58e2-9dfa-400f-9f08-133109ef8c87" class="bulleted-list"><li style="list-style-type:disc">Criar, copiar, mover e remover arquivos e diretórios.</li></ul><ul id="cdbe3d23-41f3-47ab-b344-e48e1c1283d3" class="bulleted-list"><li style="list-style-type:disc">Criar várias referências de nomes de arquivos para o mesmo arquivo com links físicos e simbólicos (ou &quot;soft&quot;).</li></ul><ul id="338187bb-a835-4bba-83e6-78f18c1da24b" class="bulleted-list"><li style="list-style-type:disc">Executar com eficiência comandos que afetam muitos arquivos usando recursos de correspondência de padrões do shell Bash.</li></ul><h2 id="e203f658-3806-4007-bf8b-ccc9760ac1dc" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch04/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 4, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch04/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Ajuda no Red Hat Enterprise Linux</strong></strong></em></a></h2><p id="b349f50c-8336-4868-aab6-da1e537cb27a" class="">Resolver problemas usando sistemas de ajuda locais.</p><p id="d9b09b91-8bcc-4e6f-8869-49bd787d7c2b" class="">Encontrar informações nas páginas de manual do sistema Linux local.</p><h2 id="531a556e-eaa5-43bf-99fb-2a858b695d14" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch05/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 5, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch05/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Criação, visualização e edição de arquivos de texto</strong></strong></em></a></h2><p id="dfb1ec3d-64c5-4a42-86e7-e0144bb1b972" class="">Criar, visualizar e editar arquivos de texto na saída do comando ou em um editor de texto.</p><ul id="48ade936-1dc0-4576-9125-48a7939eea72" class="bulleted-list"><li style="list-style-type:disc">Salvar a saída ou os erros em um arquivo com redirecionamento de shell e processar a saída do comando por meio de vários programas de linha de comando com pipes.</li></ul><ul id="faa5c307-35c9-4f37-96aa-4c2e7528158b" class="bulleted-list"><li style="list-style-type:disc">Criar e editar arquivos de texto a partir da linha de comando com o editor <code>vim</code>.</li></ul><ul id="c7178f0e-49c3-4a7b-8c4b-7d2e147b1cd1" class="bulleted-list"><li style="list-style-type:disc">Definir variáveis do shell para executar comandos, e editar scripts de inicialização Bash para definir variáveis shell e de ambiente a fim de modificar o comportamento do shell e os programas executados a partir dele.</li></ul><h2 id="6d2cbc2a-20b5-4194-bdad-75927dd1883f" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch06/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 6, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch06/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Gerenciar usuários e grupos locais</strong></strong></em></a></h2><p id="25f46951-5a64-4c5b-9be4-617caa5d9eb8" class="">Criar, gerenciar e excluir usuários e grupos locais do Linux e administrar políticas de senha locais.</p><ul id="e6a01159-ee0d-4af6-b63a-05a75ba5040d" class="bulleted-list"><li style="list-style-type:disc">Descrever o objetivo dos usuários e grupos em um sistema Linux.</li></ul><ul id="8355378b-25df-4785-850a-ccb537219803" class="bulleted-list"><li style="list-style-type:disc">Alternar para a conta de superusuário para gerenciar um sistema Linux e conceder acesso de superusuário a outros usuários com o comando <code>sudo</code>.</li></ul><ul id="cd2d4102-16a2-4faa-885b-affc95be996c" class="bulleted-list"><li style="list-style-type:disc">Criar, gerenciar e excluir contas de usuário locais.</li></ul><ul id="0c268381-d22e-48d1-ab95-a1e52de07b80" class="bulleted-list"><li style="list-style-type:disc">Criar, modificar e excluir contas de grupo locais.</li></ul><ul id="a2719ffe-d3a0-440b-afe2-b8d47601d33f" class="bulleted-list"><li style="list-style-type:disc">Definir uma política de gerenciamento de senha para usuários e bloquear e desbloquear manualmente contas de usuário.</li></ul><h2 id="123f46b6-e2b0-4818-935e-e84c226f537e" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch07/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 7, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch07/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Controlar acesso a arquivos</strong></strong></em></a></h2><p id="31e52a01-52a8-4206-a177-fc96a4613f5e" class="">Configurar permissões de sistema de arquivos Linux em arquivos e interpretar os efeitos na segurança de diferentes configurações de permissões.</p><ul id="dbd7428e-3260-4141-9b42-444e5cf3d3ab" class="bulleted-list"><li style="list-style-type:disc">Listar as permissões do sistema de arquivos em arquivos e diretórios e interpretar os efeitos dessas permissões no acesso de usuários e grupos.</li></ul><ul id="db858d0f-26e1-4e9b-99a0-702365cfc178" class="bulleted-list"><li style="list-style-type:disc">Alterar as permissões e a propriedade dos arquivos com ferramentas de linha de comando.</li></ul><ul id="379771c3-3f44-418c-9887-cf4d9002dd89" class="bulleted-list"><li style="list-style-type:disc">Controlar as permissões padrão de arquivos criados pelos usuários, explicar os efeitos de permissões especiais e usar permissões especiais e padrão para definir o proprietário do grupo de arquivos criados em um diretório.</li></ul><h2 id="18d8a7f1-d8f3-476f-831b-5869172e91d1" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch08/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 8, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch08/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Monitoramento e gerenciamento de processos do Linux</strong></strong></em></a></h2><p id="b7d57174-2c11-4f7e-aa92-27673ddf44c7" class="">Avaliar e controlar os processos em execução em um sistema Red Hat Enterprise Linux.</p><ul id="1f709a6b-6f70-43dc-bb0f-4236d703c504" class="bulleted-list"><li style="list-style-type:disc">Determinar o status, o uso de recursos e a propriedade de programas em execução em um sistema para controlá-los.</li></ul><ul id="d7fca0e4-f8d1-45d1-abe8-c0c8e4f90c8c" class="bulleted-list"><li style="list-style-type:disc">Usar controle de tarefa do Bash para gerenciar vários processos iniciados na mesma sessão de terminal.</li></ul><ul id="a676beb5-f8bf-4daf-85f3-c83222ccdae2" class="bulleted-list"><li style="list-style-type:disc">Usar comandos para encerrar e se comunicar com processos, definir as características de um processo daemon e interromper sessões de usuário e processos.</li></ul><ul id="de9f8567-2de3-4407-a645-8578c2dceed2" class="bulleted-list"><li style="list-style-type:disc">Definir a média de carga e determinar processos de servidor com uso intensivo de recursos.</li></ul><h2 id="396fafb0-6214-478f-8b34-fb7798ce0c97" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch09/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 9, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch09/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Controle de serviços e daemons</strong></strong></em></a></h2><p id="7be2a427-afa4-4bc7-9bed-c970917cf443" class="">Controlar e monitorar serviços de rede e daemons do sistema com o serviço <code>systemd</code>.</p><ul id="34064b5e-22c4-4491-b4d7-0585b68d3044" class="bulleted-list"><li style="list-style-type:disc">Listar os daemons do sistema e serviços de rede iniciados pelo serviço <code>systemd</code> e pelas unidades de soquete.</li></ul><ul id="18afb6c6-72fc-4bdc-9b0d-26e84c5797bf" class="bulleted-list"><li style="list-style-type:disc">Controlar daemons do sistema e dos serviços de rede com o comando <code>systemctl</code>.</li></ul><h2 id="c4924ae9-3711-4c6b-bbc0-a44f4543878d" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch10/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 10, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch10/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Configuração e proteção do SSH</strong></strong></em></a></h2><p id="90c53d4b-fa8f-4f0e-a3b8-260d585500c7" class="">Configurar o serviço seguro da linha de comando em sistemas remotos com OpenSSH.</p><ul id="2df7f4d1-2079-4836-b724-50a99fa13c87" class="bulleted-list"><li style="list-style-type:disc">Fazer login em um sistema remoto e executar comandos com <code>ssh</code>.</li></ul><ul id="caf9ddd1-0fdb-4d48-bfda-3242b3de2167" class="bulleted-list"><li style="list-style-type:disc">Configurar uma conta de usuário para usar a autenticação baseada em chave para fazer login em sistemas remotos com segurança e sem uma senha.</li></ul><ul id="a16cd217-a0d3-4aac-aecb-f8cd65642826" class="bulleted-list"><li style="list-style-type:disc">Desabilitar logins diretos como <code>root</code> e a autenticação baseada em senha para o serviço OpenSSH.</li></ul><h2 id="33b52b70-1d7d-421d-b6c2-12cda92f33e6" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch11/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 11, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch11/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Gerenciar redes</strong></strong></em></a></h2><p id="3e25babd-f286-45ae-ba06-57e264c6aaac" class="">Definir configurações e interfaces de rede em servidores Red Hat Enterprise Linux.</p><ul id="dbb0300e-2290-4d1d-85e4-e524b532eacf" class="bulleted-list"><li style="list-style-type:disc">Os conceitos fundamentais de endereçamento e roteamento de redes de um servidor.</li></ul><ul id="3e7f5acc-c1c8-4930-80c0-ce25eecbe819" class="bulleted-list"><li style="list-style-type:disc">Testar e inspecionar a configuração atual da rede com utilitários de linha de comando.</li></ul><ul id="a12e54a8-dee4-48ff-bf55-32e5471428da" class="bulleted-list"><li style="list-style-type:disc">Gerenciar configurações e dispositivos de rede usando o comando <code>nmcli</code>.</li></ul><ul id="14e02070-dff1-47d0-ab06-060a13623086" class="bulleted-list"><li style="list-style-type:disc">Modificar as configurações da rede editando os arquivos de configuração.</li></ul><ul id="e463edc7-db1f-4ff3-8c57-b81dd5944125" class="bulleted-list"><li style="list-style-type:disc">Configurar o nome do host estático de um servidor e sua resolução de nome e testar os resultados.</li></ul><h2 id="578cec43-b3df-4a93-be58-e0f940968fca" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch12/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 12, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch12/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Instalar e atualizar pacotes de software</strong></strong></em></a></h2><p id="6358df49-6b37-4edb-bb2e-3b60fd1c2cac" class="">Baixar, instalar, atualizar e gerenciar os pacotes de software da Red Hat e os repositórios de pacotes DNF.</p><ul id="20244eff-8f7e-434f-a657-0ac0f025b516" class="bulleted-list"><li style="list-style-type:disc">Registrar um sistema em sua conta da Red Hat e atribuir direitos a atualizações de software e serviços de suporte com o Red Hat Subscription Management.</li></ul><ul id="525b97fa-3443-464a-ba26-c399ca74b598" class="bulleted-list"><li style="list-style-type:disc">Explicar como o software é fornecido como pacotes RPM e investigar os pacotes do sistema instalados DNF e RPM.</li></ul><ul id="be095980-41a2-4e68-a695-609a38430ff4" class="bulleted-list"><li style="list-style-type:disc">Encontrar, instalar e atualizar pacotes de software com o comando <code>dnf</code>.</li></ul><ul id="e254bb85-e79f-4110-ae9c-c532b2c05893" class="bulleted-list"><li style="list-style-type:disc">Ativar e desativar o uso do servidor da Red Hat ou de terceiros por repositórios DNF.</li></ul><h2 id="6ffc05d2-0d9a-42a3-986a-2f72481b0dca" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch13/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 13, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch13/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Acesso a sistemas de arquivos Linux</strong></strong></em></a></h2><p id="910c4fb2-a112-4e3d-a7b2-f1111891d510" class="">Acessar, inspecionar e usar os sistemas de arquivos existentes no armazenamento conectado a um servidor Linux.</p><ul id="2cd9c7b1-196b-4f81-81b6-5bc57490d800" class="bulleted-list"><li style="list-style-type:disc">Identificar um diretório na hierarquia do sistema de arquivos e o dispositivo em que ele está armazenado.</li></ul><ul id="cb4998ef-3a5f-4bac-bb91-d4c7c0e8f287" class="bulleted-list"><li style="list-style-type:disc">Acessar o conteúdo dos sistemas de arquivos adicionando e removendo sistemas de arquivos da hierarquia do sistema de arquivos.</li></ul><ul id="83bf8d93-c1d2-4d69-90b0-1e261bc39327" class="bulleted-list"><li style="list-style-type:disc">Procurar arquivos em sistemas de arquivos montados com os comandos <code>find</code> e <code>locate</code>.</li></ul><h2 id="048aa00b-9028-466c-85d8-2d4581d135fc" class=""><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch14/697466ff-020d-4f11-9512-c3e7355faf54"><strong><strong>Capítulo 14, </strong></strong></a><a href="https://rha.ole.redhat.com/rha/app/courses/rh124-9.0/pages/ch14/697466ff-020d-4f11-9512-c3e7355faf54"><em><strong><strong>Análise de servidores e obtenção de suporte</strong></strong></em></a></h2><p id="ad9444df-04f7-4dd3-b634-3a6b863f8c5d" class="">Investigar e resolver problemas na interface de gerenciamento baseada na web, obtendo suporte da Red Hat para ajudar a solucionar problemas.</p><ul id="1fbf4d2f-3715-4dc1-b0b7-837347984918" class="bulleted-list"><li style="list-style-type:disc">Ativar a interface de gerenciamento do console da web para gerenciar e monitorar remotamente o desempenho de um servidor Red Hat Enterprise Linux.</li></ul><ul id="daa35816-3195-4431-a368-61e06b37c4a2" class="bulleted-list"><li style="list-style-type:disc">Descrever e usar os recursos-chave do Red Hat Customer Portal e encontrar informações da documentação da Red Hat e da base de conhecimento.</li></ul><ul id="f6231a23-ecde-472e-8c58-cc232560ebd4" class="bulleted-list"><li style="list-style-type:disc">Usar o Red Hat Insights para analisar os servidores em busca de problemas, corrigir ou resolvê-los e confirmar que a solução funcionou.</li></ul><figure id="f78ff249-2e79-4a9d-a101-6ec2db3eeb24" class="link-to-page"><a href="https://www.notion.so/Laborat-rio-Aberto-Gerenciar-arquivos-a-partir-da-linha-de-comando-f78ff2492e794a9da1016ec2db3eeb24?pvs=21">Laboratório Aberto: Gerenciar arquivos a partir da linha de comando</a></figure><figure id="96264409-eabd-47e4-ae23-deec8bf0cb1d" class="link-to-page"><a href="https://www.notion.so/Laborat-rio-Aberto-Gerenciamento-de-usu-rios-e-grupos-permiss-es-e-processos-96264409eabd47e4ae23deec8bf0cb1d?pvs=21">Laboratório Aberto: Gerenciamento de usuários e grupos, permissões e processos</a></figure><figure id="3cf5eed0-1f36-42e6-88f6-5f7f64c096f8" class="link-to-page"><a href="https://www.notion.so/Laborat-rio-Aberto-Configura-o-e-gerenciamento-de-um-servidor-3cf5eed01f3642e688f65f7f64c096f8?pvs=21">Laboratório Aberto: Configuração e gerenciamento de um servidor</a></figure><figure id="102b923e-fb7d-4de4-8401-58b04f48f342" class="link-to-page"><a href="https://www.notion.so/Laborat-rio-Aberto-Gerenciamento-de-redes-102b923efb7d4de4840158b04f48f342?pvs=21">Laboratório Aberto: Gerenciamento de redes</a></figure></div></article></body></html>
